@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYS-HW-001 // LADDER BARREL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #050505; /* Deep Onyx */
+            color: #e5e5e5;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.05) 0%, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 30px 30px, 30px 30px;
+        }
+
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* M.O.E. O.S. UI Elements */
+        .neon-border { border: 1px solid rgba(6, 182, 212, 0.3); }
+        .neon-text { color: #06b6d4; text-shadow: 0 0 10px rgba(6, 182, 212, 0.4); }
+        .neon-bg-glow { background: radial-gradient(circle at center, rgba(6, 182, 212, 0.1) 0%, transparent 70%); }
+
+        /* Interactive Cards */
+        .interactive-card {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        .interactive-card:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            background-color: rgba(10, 10, 10, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(6, 182, 212, 0.05);
+        }
+
+        /* Minimalist Table/Grid styling */
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        @media (min-width: 768px) {
+            .data-grid {
+                grid-template-columns: 2fr 4fr 5fr;
+                gap: 2rem;
+            }
+        }
+        
+        .grid-header {
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .grid-row {
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: background-color 0.3s ease;
+        }
+        .grid-row:hover {
+            background-color: rgba(255,255,255,0.02);
+            border-radius: 4px;
+        }
+        .grid-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        /* Tabs Animation */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* SVG Line Animations */
+        @keyframes drawLine {
+            to { stroke-dashoffset: 0; }
+        }
+        .draw-path {
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            animation: drawLine 2s forwards ease-out;
+        }
+    </style>
+</head>
+<body class="py-12 md:py-20 px-4 md:px-8">
+
+    <div class="max-w-5xl mx-auto">
+        
+        <!-- HEADER METADATA -->
+        <header class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-zinc-800 pb-8 mb-16 gap-6 relative">
+            <div class="absolute top-0 right-0 w-32 h-32 neon-bg-glow rounded-full blur-2xl pointer-events-none"></div>
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-2 h-2 bg-cyan-500 rounded-full animate-pulse"></div>
+                    <p class="font-mono text-[10px] text-cyan-500 tracking-[0.2em] uppercase">M.O.E. O.S. // Hardware Doctrine</p>
+                </div>
+                <h1 class="font-serif text-5xl md:text-6xl text-white tracking-wide">Ladder Barrel</h1>
+            </div>
+            <div class="md:text-right bg-zinc-900/50 border border-zinc-800 p-4 rounded-sm">
+                <p class="font-mono text-[10px] text-zinc-500 tracking-[0.2em] uppercase mb-1">Designation</p>
+                <p class="font-mono text-sm text-cyan-400 tracking-[0.1em] font-bold">SYS-HW-001</p>
+            </div>
+        </header>
+
+        <!-- 1.0 THE UNIVERSAL DISTANCE -->
+        <section class="mb-24 relative">
+            <h2 class="font-serif text-2xl md:text-3xl text-white mb-4 flex items-center gap-4">
+                <span class="text-zinc-600 font-mono text-lg">1.0</span> The "Universal Distance" <span class="text-zinc-500 text-sm font-sans italic">(Calibration)</span>
+            </h2>
+            <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-8 max-w-3xl">
+                The distance between the ladder and the barrel is not random; it is dictated by the client's femur length and the specific exercise.
+            </p>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Visual Abstract Representation -->
+                <div class="bg-black border border-zinc-800 p-8 flex items-center justify-center relative overflow-hidden rounded-sm group">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-cyan-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <svg viewBox="0 0 400 300" class="w-full h-full max-w-[300px]">
+                        <!-- Ladder -->
+                        <line x1="50" y1="50" x2="50" y2="250" stroke="#333" stroke-width="6"/>
+                        <line x1="70" y1="50" x2="70" y2="250" stroke="#333" stroke-width="6"/>
+                        <line x1="50" y1="100" x2="70" y2="100" stroke="#06b6d4" stroke-width="4"/> <!-- Active Rung -->
+                        <line x1="50" y1="150" x2="70" y2="150" stroke="#444" stroke-width="4"/>
+                        <line x1="50" y1="200" x2="70" y2="200" stroke="#444" stroke-width="4"/>
+                        
+                        <!-- Barrel Arc -->
+                        <path d="M 150 250 C 150 100, 350 100, 350 250" fill="none" stroke="#444" stroke-width="6"/>
+                        
+                        <!-- The Apex Point -->
+                        <circle cx="250" cy="115" r="6" fill="#06b6d4" class="animate-pulse"/>
+                        <text x="250" y="95" fill="#06b6d4" font-family="monospace" font-size="12" text-anchor="middle" letter-spacing="2">THE APEX</text>
+                        
+                        <!-- Distance Measurement -->
+                        <line x1="70" y1="240" x2="150" y2="240" stroke="#666" stroke-width="1" stroke-dasharray="4,4" class="draw-path"/>
+                        <polygon points="145,237 150,240 145,243" fill="#666"/>
+                        <polygon points="75,237 70,240 75,243" fill="#666"/>
+                        <text x="110" y="230" fill="#666" font-family="monospace" font-size="10" text-anchor="middle">DISTANCE (FEMUR)</text>
+                    </svg>
+                </div>
+
+                <!-- Technical Specs -->
+                <div class="space-y-4">
+                    <h3 class="font-mono text-[10px] text-cyan-500 tracking-[0.2em] uppercase mb-4">The Universal Baseline (Seated / Short Box)</h3>
+                    
+                    <div class="interactive-card bg-zinc-900/40 border border-zinc-800 p-5 rounded-sm">
+                        <dt class="text-white text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-2"><i class="fa-solid fa-crosshairs text-cyan-500"></i> The Apex Rule</dt>
+                        <dd class="text-zinc-400 text-sm">The client sits exactly on the highest point (the apex) of the barrel's arc.</dd>
+                    </div>
+
+                    <div class="interactive-card bg-zinc-900/40 border border-zinc-800 p-5 rounded-sm">
+                        <dt class="text-white text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-2"><i class="fa-solid fa-link text-cyan-500"></i> The Micro-Bend</dt>
+                        <dd class="text-zinc-400 text-sm">With the client's sit-bones on the apex, their feet must hook under the appropriate rung (usually the 2nd or 3rd from the top).</dd>
+                    </div>
+
+                    <div class="interactive-card bg-black border border-cyan-900/50 p-5 rounded-sm relative overflow-hidden group">
+                        <div class="absolute left-0 top-0 w-1 h-full bg-cyan-500 group-hover:w-2 transition-all"></div>
+                        <dt class="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-2 pl-3">The QA Gate (Validation)</dt>
+                        <dd class="text-zinc-300 text-sm mb-3 pl-3">The knees must have a micro-bend. If their legs are completely straight and locked out, the barrel is too far. If their knees are bent at 90 degrees, it is too close.</dd>
+                        <dd class="bg-zinc-900 text-zinc-400 text-xs font-mono tracking-wide mt-3 p-3 rounded-sm border border-zinc-800 pl-3 ml-3">
+                            <span class="text-cyan-500 font-bold">> WHY?</span> If the legs lock out, the hamstrings pull the pelvis into a posterior tilt, ruining the STOTT alignment before they even move.
+                        </dd>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2.0 THE STOTT PELVIS THING -->
+        <section class="mb-24">
+            <h2 class="font-serif text-2xl md:text-3xl text-white mb-4 flex items-center gap-4">
+                <span class="text-zinc-600 font-mono text-lg">2.0</span> The STOTT "Pelvis Thing" <span class="text-zinc-500 text-sm font-sans italic">(Biomechanical Standard)</span>
+            </h2>
+            <div class="max-w-3xl mb-10">
+                <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-4">
+                    The defining characteristic of the STOTT method is lumbopelvic alignment. When you refer to the "pelvis thing," you are talking about the war against the Posterior Tilt (Tucking).
+                </p>
+                <p class="text-zinc-400 text-sm md:text-base leading-relaxed">
+                    When clients get on the Ladder Barrel (especially for the Ballet Stretch or the Short Box Twist), they want to feel "successful." To get their leg higher, or to lean further back, they will tuck their tailbone under and flatten their lower back.
+                </p>
+            </div>
+
+            <!-- Interactive Split Cards -->
+            <div class="bg-zinc-900/20 border border-zinc-800 p-6 md:p-8 rounded-sm">
+                <div class="flex items-center gap-3 mb-8">
+                    <i class="fa-solid fa-scale-balanced text-zinc-500"></i>
+                    <h3 class="font-mono text-[10px] text-zinc-400 tracking-[0.2em] uppercase">The STOTT Correction (Neutral Pelvis)</h3>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- The Wolf -->
+                    <div class="interactive-card bg-black border border-zinc-800 p-6 relative">
+                        <div class="absolute top-4 right-4 text-zinc-700"><i class="fa-solid fa-microchip"></i></div>
+                        <p class="text-white text-xs font-bold uppercase tracking-widest mb-4">The Wolf Cue <span class="text-zinc-500 font-mono text-[9px]">(Technical)</span></p>
+                        <p class="text-zinc-400 text-sm leading-relaxed font-mono">
+                            "Maintain ASIS (anterior superior iliac spine) and PSIS (posterior superior iliac spine) in the same horizontal plane. Do not allow the hamstrings to dictate pelvic position."
+                        </p>
+                    </div>
+                    
+                    <!-- The Shepherd -->
+                    <div class="interactive-card bg-black border border-zinc-800 p-6 relative">
+                        <div class="absolute top-4 right-4 text-zinc-700"><i class="fa-solid fa-comment-dots"></i></div>
+                        <p class="text-white text-xs font-bold uppercase tracking-widest mb-4">The Shepherd Cue <span class="text-zinc-500 font-mono text-[9px]">(Imagery)</span></p>
+                        <p class="text-cyan-100 text-base leading-relaxed font-serif italic">
+                            "Your hip bones are headlights. If you tuck your tailbone, your headlights shine up into the trees. Keep them shining perfectly straight at the wall."
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-cyan-950/20 border-l-4 border-cyan-500 p-4 mt-6">
+                    <p class="text-cyan-500 text-[10px] font-mono font-bold uppercase tracking-widest mb-1">SYSTEM RULE OVERRIDE</p>
+                    <p class="text-zinc-300 text-sm">
+                        If the pelvis cannot stay neutral, the leg must be lowered (Ballet Stretch) or the range of motion must be shortened (Arch & Twist).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.0 THE DUAL VIEW MOUNTING PROTOCOL (Interactive Tabs) -->
+        <section class="mb-20">
+            <h2 class="font-serif text-2xl md:text-3xl text-white mb-4 flex items-center gap-4">
+                <span class="text-zinc-600 font-mono text-lg">3.0</span> The "Dual View" Protocol <span class="text-zinc-500 text-sm font-sans italic">(Mounting)</span>
+            </h2>
+            <p class="text-zinc-400 text-sm md:text-base leading-relaxed mb-8 max-w-3xl">
+                Getting on and off the barrel requires a <strong class="text-white font-bold tracking-wide">"Three-Point Contact"</strong> rule at all times. Select the specific mounting protocol to view the execution steps.
+            </p>
+
+            <!-- TABS UI -->
+            <div class="flex flex-col md:flex-row gap-2 md:gap-4 mb-8 border-b border-zinc-800 pb-4">
+                <button onclick="switchTab('protocol-a')" id="btn-protocol-a" class="tab-btn px-6 py-3 border border-cyan-500 text-cyan-400 font-mono text-[10px] uppercase tracking-widest bg-cyan-900/10 transition-colors text-left md:text-center flex items-center gap-3">
+                    <i class="fa-solid fa-chair"></i> Protocol A: Seated Work
+                </button>
+                <button onclick="switchTab('protocol-b')" id="btn-protocol-b" class="tab-btn px-6 py-3 border border-zinc-800 text-zinc-500 font-mono text-[10px] uppercase tracking-widest hover:border-zinc-600 hover:text-zinc-300 transition-colors text-left md:text-center flex items-center gap-3">
+                    <i class="fa-solid fa-shoe-prints"></i> Protocol B: Ballet Stretch
+                </button>
+            </div>
+
+            <!-- TAB CONTENT A: Seated Work -->
+            <div id="protocol-a" class="tab-content active">
+                <div class="mb-6">
+                    <h3 class="font-serif text-xl text-white mb-1">A. Mounting for Seated Work <span class="text-zinc-500 text-sm italic font-sans ml-2">(e.g., Arch & Twist)</span></h3>
+                    <p class="text-sm text-cyan-500 mt-1 font-mono text-[10px] tracking-widest"><strong class="text-white font-sans uppercase text-xs mr-2">Target Goal:</strong> Getting onto the apex facing the ladder safely.</p>
+                </div>
+
+                <div class="data-grid grid-header hidden md:grid">
+                    <div class="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">Step Sequence</div>
+                    <div class="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">The Wolf (Technical Execution)</div>
+                    <div class="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">The Shepherd (Client Experience)</div>
+                </div>
+
+                <div class="data-grid grid-row px-2">
+                    <div class="text-white text-sm font-semibold font-mono tracking-wide">1. THE ANCHOR</div>
+                    <div class="text-zinc-400 text-sm">Stand between ladder and barrel. Hands grip the top rung of the ladder firmly.</div>
+                    <div class="text-zinc-300 text-sm font-serif italic">"Grab the top rung with both hands. This is your anchor."</div>
+                </div>
+                
+                <div class="data-grid grid-row px-2">
+                    <div class="text-white text-sm font-semibold font-mono tracking-wide">2. THE STEP-UP</div>
+                    <div class="text-zinc-400 text-sm">Place one foot on the bottom wooden base of the apparatus (not a rung).</div>
+                    <div class="text-zinc-300 text-sm font-serif italic">"Step one foot onto the wooden base, keep your hands locked."</div>
+                </div>
+
+                <div class="data-grid grid-row px-2">
+                    <div class="text-white text-sm font-semibold font-mono tracking-wide">3. THE PIVOT</div>
+                    <div class="text-zinc-400 text-sm">Transfer weight to the hands. Pivot the pelvis to sit securely on the apex of the barrel.</div>
+                    <div class="text-zinc-300 text-sm font-serif italic">"Use your arms to lift your weight, and gently sit on the very top of the curve."</div>
+                </div>
+
+                <div class="data-grid grid-row px-2">
+                    <div class="text-white text-sm font-semibold font-mono tracking-wide text-cyan-400">4. THE LOCK-IN</div>
+                    <div class="text-zinc-400 text-sm">Slide feet between the rungs (dorsiflexion to lock).</div>
+                    <div class="text-zinc-300 text-sm font-serif italic">"Hook your feet under the rung. Flex your toes up to lock yourself in."</div>
+                </div>
+
+                <div class="data-grid grid-row bg-zinc-900 border border-zinc-800 p-5 mt-4 rounded-sm">
+                    <div class="text-zinc-500 font-mono text-[10px] uppercase tracking-widest flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Dismount Sequence
+                    </div>
+                    <div class="text-zinc-400 text-sm">Hands to rung &rarr; Unhook feet &rarr; Step one foot to base &rarr; Step to floor.</div>
+                    <div class="text-zinc-400 text-sm font-serif italic">"Hands on the ladder first. Unhook, step down smoothly."</div>
+                </div>
+            </div>
+
+            <!-- TAB CONTENT B: Ballet Stretch -->
+            <div id="protocol-b" class="tab-content">
+                <div class="mb-6">
+                    <h3 class="font-serif text-xl text-white mb-1">B. Mounting for the Ballet Stretch</h3>
+                    <p class="text-sm text-cyan-500 mt-1 font-mono text-[10px] tracking-widest"><strong class="text-white font-sans uppercase text-xs mr-2">Target Goal:</strong> Standing beside or behind the barrel, placing one leg on top.</p>
+                </div>
+
+                <div class="data-grid grid-header hidden md:grid">
+                    <div class="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">Step Sequence</div>
+                    <div class="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">The Wolf (Technical Execution)</div>
+                    <div class="font-mono text-[10px] text-zinc-600 uppercase tracking-widest">The Shepherd (Client Experience)</div>
+                </div>
+
+                <div class="data-grid grid-row px-2">
+                    <div class="text-white text-sm font-semibold font-mono tracking-wide">1. THE DISTANCE</div>
+                    <div class="text-zinc-400 text-sm">Stand facing the barrel. Distance should equal the client's leg length.</div>
+                    <div class="text-zinc-300 text-sm font-serif italic">"Stand tall facing the barrel, about one leg-length away."</div>
+                </div>
+                
+                <div class="data-grid grid-row px-2">
+                    <div class="text-white text-sm font-semibold font-mono tracking-wide">2. THE HAND HOLD</div>
+                    <div class="text-zinc-400 text-sm">Both hands placed firmly on the apex of the barrel to stabilize the trunk.</div>
+                    <div class="text-zinc-300 text-sm font-serif italic">"Place both hands flat on the top of the barrel to brace yourself."</div>
+                </div>
+
+                <div class="data-grid grid-row px-2">
+                    <div class="text-white text-sm font-semibold font-mono tracking-wide">3. THE PLACEMENT</div>
+                    <div class="text-zinc-400 text-sm">Externally rotate the femur slightly, lift, and place the calf/Achilles on the barrel.</div>
+                    <div class="text-zinc-300 text-sm font-serif italic">"Lift your leg and place your ankle softly on the curve."</div>
+                </div>
+
+                <div class="data-grid grid-row px-2">
+                    <div class="text-white text-sm font-semibold font-mono tracking-wide text-cyan-400">4. THE STOTT CHECK</div>
+                    <div class="text-zinc-400 text-sm">Immediately check for lateral pelvic shift or hiking of the working hip (ASIS mismatch).</div>
+                    <div class="text-zinc-300 text-sm font-serif italic">"Drop your lifted hip down. Level your headlights before we stretch."</div>
+                </div>
+
+                <div class="data-grid grid-row bg-zinc-900 border border-zinc-800 p-5 mt-4 rounded-sm">
+                    <div class="text-zinc-500 font-mono text-[10px] uppercase tracking-widest flex items-center gap-2">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Dismount Sequence
+                    </div>
+                    <div class="text-zinc-400 text-sm">Hands on barrel &rarr; Micro-bend supporting knee &rarr; Slide leg off gracefully.</div>
+                    <div class="text-zinc-400 text-sm font-serif italic">"Hands secure. Soften your standing knee, and slide the leg down."</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER: SUMMARY -->
+        <footer class="mt-16 pt-12 border-t border-zinc-800 relative">
+            <!-- decorative graphic -->
+            <div class="absolute left-1/2 -top-[14px] -translate-x-1/2 bg-[#050505] px-4">
+                <i class="fa-solid fa-shield-halved text-zinc-600 text-xl"></i>
+            </div>
+
+            <h2 class="font-mono text-[10px] text-cyan-500 text-center uppercase tracking-[0.3em] mb-8">The Architect's Summary</h2>
+            
+            <div class="bg-zinc-900/40 border border-zinc-800 p-8 md:p-12 text-center rounded-sm">
+                <p class="font-medium text-white text-lg md:text-xl leading-relaxed mb-8 max-w-3xl mx-auto font-serif">
+                    You do not need to be certified on this machine today to use it safely, provided you enforce the <span class="text-cyan-400 font-sans tracking-wide font-bold">Three-Point Contact rule</span> for mounting and the <span class="text-cyan-400 font-sans tracking-wide font-bold">Neutral Pelvis rule</span> for execution.
+                </p>
+                <div class="h-px w-24 bg-zinc-700 mx-auto mb-8"></div>
+                <p class="text-sm md:text-base leading-relaxed text-zinc-400 max-w-2xl mx-auto">
+                    The Ladder Barrel is an amplifier. It amplifies spinal extension and hamstring mobility, but it will also immediately amplify and expose a client's compensations (like Eleine's right hip hike or gym flat-back). <strong class="text-white border-b border-zinc-500 pb-0.5">Use it as a diagnostic tool first, and a stretching tool second.</strong>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- TABS JAVASCRIPT -->
+    <script>
+        function switchTab(tabId) {
+            // Hide all content
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Reset all buttons
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('border-cyan-500', 'text-cyan-400', 'bg-cyan-900/10');
+                el.classList.add('border-zinc-800', 'text-zinc-500');
+            });
+            
+            // Show selected content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Style selected button
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('border-zinc-800', 'text-zinc-500');
+            activeBtn.classList.add('border-cyan-500', 'text-cyan-400', 'bg-cyan-900/10');
+        }
+    </script>
+</body>
+</html>
